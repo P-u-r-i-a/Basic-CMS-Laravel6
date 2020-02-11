@@ -13,6 +13,8 @@
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::resource('/dashboard/posts', 'PostController')->middleware('auth');
+
 
 Route::get('/', function () {
     return view('welcome');
