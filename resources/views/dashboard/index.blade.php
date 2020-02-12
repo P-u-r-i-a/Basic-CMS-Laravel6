@@ -13,6 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <a href="{{ route('posts.index') }}" class="btn btn-block btn-outline-primary">Posts</a>
                     <a href="{{ route('posts.create') }}" class="btn btn-block btn-outline-primary">Create New Post</a>
                 </div>
             </div>

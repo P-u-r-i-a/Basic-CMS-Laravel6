@@ -15,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        // TODO show all posts
+        $posts = Post::paginate(9);
+        return view('post.index', compact('posts') );
     }
 
     /**
@@ -78,7 +79,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        // TODO edit the post information
+        return view('post.edit', compact('post')); 
     }
 
     /**
@@ -90,7 +91,19 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        // TODO update the post
+        $request->validate([
+            'title' => 'required',
+            'body'  => 'required',
+        ]);
+
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->meta_description = $request->meta_description;
+        $post->status = $request->status;
+
+        $post->save();
+
+        return back()->with('message', 'Successful!');
     }
 
     /**
@@ -101,6 +114,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        // TODO remove the post from database
+        $post->delete();
+        return redirect()->route('posts.index')->with('message', 'Successful!');
     }
 }
