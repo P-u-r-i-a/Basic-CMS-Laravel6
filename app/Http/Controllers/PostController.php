@@ -38,13 +38,11 @@ class PostController extends Controller
      */
     public function store(StorePost $request)
     {
-        // TODO improve slug
 
         $post = new Post;
         $post->title = $request->title;
         $post->body = $request->body;
         $post->meta_description = $request->meta_description;
-        $post->slug = Str::slug($post->title . '-' .now(), '-') . $post->id;
         $post->user_id = auth()->user()->id;
         $post->status = $request->status;
 
