@@ -26,7 +26,7 @@
                         </div>
                         <div class="form-group">
                             <label for="body">Body</label>
-                            <textarea name="body" cols="30" rows="10" class="form-control">{{ old('body') }}</textarea>
+                            <textarea id="editor" name="body" cols="30" rows="10" class="form-control">{{ old('body') }}</textarea>
                             @error('body')
                                 <small class="text-danger">{{$message}}</small>
                             @enderror
