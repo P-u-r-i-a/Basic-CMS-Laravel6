@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePost;
+use App\Http\Requests\UpdatePost;
 use App\Post;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -35,16 +36,9 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePost $request)
     {
         // TODO improve slug
-        // TODO improve form validation
-
-        $request->validate([
-            'title' => 'required',
-            'body'  => 'required',
-            'cover_image' => 'required|mimes:png,jpeg,bmp',
-        ]);
 
         $post = new Post;
         $post->title = $request->title;
@@ -94,14 +88,8 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdatePost $request, Post $post)
     {
-        $request->validate([
-            'title' => 'required',
-            'body'  => 'required',
-            'cover_image' => 'required|mimes:png,jpeg,bmp',
-        ]);
-
         $post->title = $request->title;
         $post->body = $request->body;
         $post->meta_description = $request->meta_description;
