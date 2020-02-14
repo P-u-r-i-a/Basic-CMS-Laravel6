@@ -37,14 +37,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-
-        // TODO upload image
         // TODO improve slug
         // TODO improve form validation
 
         $request->validate([
             'title' => 'required',
             'body'  => 'required',
+            'cover_image' => 'required|mimes:png,jpeg,bmp',
         ]);
 
         $post = new Post;
@@ -55,6 +54,12 @@ class PostController extends Controller
         $post->user_id = auth()->user()->id;
         $post->status = $request->status;
 
+        if($request->hasFile('cover_image')){
+            $path = $request->cover_image->storeAs("public/posts", Str::slug($request->title) . '.' . $request->cover_image   ->extension());
+            if ($request->cover_image->isValid())
+                $post->cover_image = $path;   
+        }
+        
         $post->save();
 
         return back()->with('message','Successful!');
@@ -94,12 +99,19 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required',
             'body'  => 'required',
+            'cover_image' => 'required|mimes:png,jpeg,bmp',
         ]);
 
         $post->title = $request->title;
         $post->body = $request->body;
         $post->meta_description = $request->meta_description;
         $post->status = $request->status;
+
+        if ($request->hasFile('cover_image')) {
+            $path = $request->cover_image->storeAs("public/posts", Str::slug($request->title) . '.' . $request->cover_image->extension());
+            if ($request->cover_image->isValid())
+                $post->cover_image = $path;
+        }
 
         $post->save();
 

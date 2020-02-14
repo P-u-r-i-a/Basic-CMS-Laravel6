@@ -13,6 +13,7 @@
                 </div>
             @endif
             <div class="card">
+                <img class="card-img-top" src="{{ Storage::url($post->cover_image) }}" >
                 <div class="card-header">
                     Edit Post
                     <div class="float-right">
@@ -24,7 +25,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                   <form action="{{ route('posts.update', compact('post')) }}" method="POST">
+                   <form action="{{ route('posts.update', compact('post')) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
@@ -44,6 +45,13 @@
                         <div class="from-group">
                             <label for="meta_description">Meta Description</label>
                             <input type="text" name="meta_description" value="{{ $post->meta_description }}" class="form-control">
+                        </div>
+                        <div class="from-group mt-2">
+                            <label for="cover_image">Cover Image</label>
+                            <input type="file" name="cover_image" class="form-control">
+                            @error('cover_image')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
                         <div class="from-group mt-2">
                             <label for="status">Status</label>
