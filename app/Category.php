@@ -5,9 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-class Post extends Model
+class Category extends Model
 {
     use Sluggable;
+    
     /**
      * Return the sluggable configuration array for this model.
      *
@@ -27,9 +28,8 @@ class Post extends Model
      *
      * @return  \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function categories() 
+    public function posts()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Post::class);
     }
-
 }
