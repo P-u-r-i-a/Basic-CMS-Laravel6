@@ -27,6 +27,7 @@ class UpdatePost extends FormRequest
             'title' => 'required',
             'body'  => 'required',
             'cover_image' => 'mimes:png,jpeg,bmp',
+            'categories'  => 'required'
         ];
     }
 }

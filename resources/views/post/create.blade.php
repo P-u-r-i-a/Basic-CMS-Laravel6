@@ -35,6 +35,17 @@
                             <label for="meta_description">Meta Description</label>
                             <input type="text" name="meta_description" value="{{ old('meta_description') }}" class="form-control">
                         </div>
+                        <div class="form-group mt-3">
+                            <label for="categories">Categories</label>
+                            <select name="categories[]" id="multiple-select" class="form-control" multiple data-max-options="3" data-live-search="true">
+                                @foreach($categories as $category)
+                                    <option {{ in_array($category->id, old('categories', [])) ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('categories')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror 
+                        </div>
                         <div class="from-group mt-2">
                             <label for="cover_image">Cover Image</label>
                             <input type="file" name="cover_image" class="form-control">
@@ -57,3 +68,16 @@
     </div>
 </div>
 @endsection
+
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.12/dist/css/bootstrap-select.min.css">    
+@endpush
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.12/dist/js/bootstrap-select.min.js"></script>
+    <script>
+        $(function () {
+            $('#multiple-select').selectpicker();
+        });
+    </script>
+@endpush

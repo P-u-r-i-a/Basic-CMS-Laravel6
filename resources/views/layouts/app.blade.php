@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{asset('trumbowyg/ui/trumbowyg.min.css')}}" rel="stylesheet">
+    @stack('styles')
 </head>
 <body>
     <div id="app">
@@ -63,5 +64,6 @@
         resetCss: true
     });
     </script>
+    @stack('scripts')
 </body>
 </html>

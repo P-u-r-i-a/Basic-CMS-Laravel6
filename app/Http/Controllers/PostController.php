@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Http\Requests\StorePost;
 use App\Http\Requests\UpdatePost;
 use App\Post;
@@ -27,7 +28,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('post.create');
+        $categories = Category::all();
+        return view('post.create', compact('categories'));
     }
 
     /**
@@ -38,7 +40,6 @@ class PostController extends Controller
      */
     public function store(StorePost $request)
     {
-
         $post = new Post;
         $post->title = $request->title;
         $post->body = $request->body;
@@ -53,6 +54,7 @@ class PostController extends Controller
         }
         
         $post->save();
+        $post->categories()->sync($request->categories);
 
         return back()->with('message','Successful!');
     }
@@ -76,7 +78,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('post.edit', compact('post')); 
+        $categories = Category::all();
+        return view('post.edit', compact(['post','categories'])); 
     }
 
     /**
@@ -100,6 +103,7 @@ class PostController extends Controller
         }
 
         $post->save();
+        $post->categories()->sync($request->categories);
 
         return back()->with('message', 'Successful!');
     }
