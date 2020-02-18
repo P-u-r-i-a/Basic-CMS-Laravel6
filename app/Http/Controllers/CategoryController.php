@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreCategory;
+use App\Http\Requests\UpdateCategory;
+use Illuminate\Support\Str;
+
 
 class CategoryController extends Controller
 {
@@ -14,7 +17,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        // TODO
+        $categories = Category::paginate(9);
+        return view('category.index', compact('categories'));
     }
 
     /**
@@ -24,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        // TODO
+        return view('category.create');
     }
 
     /**
@@ -33,9 +37,19 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategory $request)
     {
-        // TODO
+        $category = New Category;
+        $category->name = $request->name;
+        if ($request->hasFile('cover')) {
+            $path = $request->cover->storeAs("public/categories", Str::slug($request->name) . '.' . $request->cover->extension());
+            if ($request->cover->isValid())
+                $category->cover = $path;
+        }
+
+        $category->save();
+
+        return back()->with('message', 'Successful!');
     }
 
     /**
@@ -57,7 +71,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        // TODO
+        return view('category.edit', compact('category'));
     }
 
     /**
@@ -67,9 +81,18 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(UpdateCategory $request, Category $category)
     {
-        // TODO
+        $category->name = $request->name;
+        if ($request->hasFile('cover')) {
+            $path = $request->cover->storeAs("public/categories", Str::slug($request->name) . '.' . $request->cover->extension());
+            if ($request->cover->isValid())
+                $category->cover = $path;
+        }
+
+        $category->save();
+
+        return back()->with('message', 'Successful!');
     }
 
     /**
@@ -80,6 +103,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        // TODO
+        $category->delete();
+        return redirect()->route('categories.index')->with('message', 'Successful!');
     }
 }

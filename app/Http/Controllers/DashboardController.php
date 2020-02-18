@@ -24,5 +24,6 @@ class DashboardController extends Controller
     public function index()
     {
         return view('dashboard.index');
+        return redirect()->route('category.index')->with('message', 'Successful!');
     }
 }
