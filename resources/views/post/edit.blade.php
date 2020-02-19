@@ -17,7 +17,7 @@
                 <div class="card-header">
                     Edit Post
                     <div class="float-right">
-                        <form action="{{ route('posts.destroy', compact('post')) }}" method="POST">
+                        <form action="{{ route('posts.destroy', compact('post')) }}" method="POST" id="delete-form">
                             @csrf
                             @method('DELETE')
                             <input type="submit" value="Remove" class="btn btn-sm btn-outline-danger">
@@ -90,5 +90,21 @@
         $(function () {
             $('#multiple-select').selectpicker();
         });
+    </script>
+    
+    <script>
+        window.onload = function() {
+            const DELETE_FORM = document.querySelector("#delete-form");
+            DELETE_FORM.addEventListener('submit', function(event) {
+                event.preventDefault();
+                doubleCheck(DELETE_FORM);
+            });
+        }
+        
+        function doubleCheck(form) {
+            if(confirm("Are you sure ?")) {
+                form.submit();
+            }
+        }
     </script>
 @endpush

@@ -16,7 +16,7 @@
                 <img class="card-img-top" src="{{ Storage::url($category->cover) }}" alt="{{ $category->name  }}">
                 <div class="card-header">Edit Category
                     <div class="float-right">
-                        <form action="{{ route('categories.destroy', compact('category')) }}" method="POST">
+                        <form action="{{ route('categories.destroy', compact('category')) }}" method="POST" id="delete-form">
                             @csrf
                             @method('DELETE')
                             <input type="submit" value="Remove" class="btn btn-sm btn-outline-danger">
@@ -49,3 +49,21 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script>
+        window.onload = function() {
+            const DELETE_FORM = document.querySelector("#delete-form");
+            DELETE_FORM.addEventListener('submit', function(event) {
+                event.preventDefault();
+                doubleCheck(DELETE_FORM);
+            });
+        }
+        
+        function doubleCheck(form) {
+            if(confirm("Are you sure ?")) {
+                form.submit();
+            }
+        }
+    </script>    
+@endpush
