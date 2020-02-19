@@ -7,7 +7,7 @@ UNDER DEVELOPMENT...
 
  - [x] Authentication
  - [x] Create,Update and Delete Posts
- - [ ] Categories
+ - [x] Categories
  - [ ] Media Library
  - [ ] Settings
  - [ ] Sitemap
