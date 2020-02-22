@@ -9,7 +9,6 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{asset('trumbowyg/ui/trumbowyg.min.css')}}" rel="stylesheet">
     @stack('styles')
 </head>
 <body>
@@ -58,12 +57,6 @@
             @yield('content')
         </main>
     </div>
-    <script src="{{asset('trumbowyg/trumbowyg.min.js')}}"></script>  
-    <script>
-        $('#editor').trumbowyg({
-        resetCss: true
-    });
-    </script>
     @stack('scripts')
 </body>
 </html>
