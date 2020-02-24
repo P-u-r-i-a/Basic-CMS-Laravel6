@@ -3,6 +3,28 @@
 # Basic CMS based on the Laravel 6
 UNDER DEVELOPMENT...
 
+-----
+## HOW TO START
+
+Firstly clone this repository and install the dependencies.
+
+    $ git clone https://github.com/PuriaGithub/Basic-CMS-Laravel6.git
+    $ composer install
+
+After that run the command below. Do not forget to configure your .env file. 
+
+    $ php artisan migrate
+
+And then run
+
+    $ npm install
+    $ npm run production
+
+Finally, serve the application.
+
+    $ php artisan serve
+
+
 ## TODO
 
  - [x] Authentication
