@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('dashboard.master')
 
 @section('content')
 <div class="container">
@@ -15,7 +15,7 @@
         </div>
         @foreach ($posts as $post)
             <div class="col-md-4 mt-3">
-                <div class="card">
+                <div class="card h-100">
                     <img class="card-img-top" src="{{ Storage::url($post->cover_image) }}" alt="{{ $post->title  }}">
                     @if($post->status == 'publish')
                         <span class="badge badge-success" style="position:absolute !important; top:20px; right:20px; font-size:12px">Published</span>
