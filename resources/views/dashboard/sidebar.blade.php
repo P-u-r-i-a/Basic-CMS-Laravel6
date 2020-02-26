@@ -3,16 +3,19 @@
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link active" href="{{ route('dashboard') }}">
+                    <i data-feather="home"></i>   
                     Dashboard <span class="sr-only">(current)</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('posts.index') }}">
+                    <i data-feather="list"></i>
                     Posts
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('categories.index') }}">
+                    <i data-feather="list"></i>
                     Categories
                 </a>
             </li>
@@ -23,12 +26,14 @@
         <ul class="nav flex-column mb-2">
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('posts.create') }}">
-                    Create New Post
+                    <i data-feather="plus-circle"></i>
+                    New Post
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('categories.create') }}">
-                    Create New Category
+                    <i data-feather="plus-circle"></i>
+                    New Category
                 </a>
             </li>
         </ul>

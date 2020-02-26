@@ -18,6 +18,10 @@
       </div>
     </main>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>
     @stack('scripts')
   </body>
 </html>
