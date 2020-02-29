@@ -17,8 +17,9 @@ class PostController extends Controller
      */
     public function index()
     {
+        $title = 'Posts';
         $posts = Post::paginate(9);
-        return view('post.index', compact('posts') );
+        return view('post.index', compact(['posts','title']) );
     }
 
     /**
@@ -28,8 +29,9 @@ class PostController extends Controller
      */
     public function create()
     {
+        $title = 'Create New Post';
         $categories = Category::all();
-        return view('post.create', compact('categories'));
+        return view('post.create', compact(['categories','title']));
     }
 
     /**
@@ -78,8 +80,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $title = 'Edit Post';
         $categories = Category::all();
-        return view('post.edit', compact(['post','categories'])); 
+        return view('post.edit', compact(['post','categories','title'])); 
     }
 
     /**

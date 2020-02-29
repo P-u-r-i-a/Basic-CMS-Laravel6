@@ -17,8 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        $title = 'Categories';
         $categories = Category::paginate(9);
-        return view('category.index', compact('categories'));
+        return view('category.index', compact(['categories', 'title']));
     }
 
     /**
@@ -28,7 +29,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category.create');
+        $title = 'Create New Category';
+        return view('category.create', compact('title'));
     }
 
     /**
@@ -39,7 +41,7 @@ class CategoryController extends Controller
      */
     public function store(StoreCategory $request)
     {
-        $category = New Category;
+        $category = new Category;
         $category->name = $request->name;
         if ($request->hasFile('cover')) {
             $path = $request->cover->storeAs("public/categories", Str::slug($request->name) . '.' . $request->cover->extension());
@@ -71,7 +73,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('category.edit', compact('category'));
+        $title = 'Edit Category';
+        return view('category.edit', compact(['category', 'title']));
     }
 
     /**
