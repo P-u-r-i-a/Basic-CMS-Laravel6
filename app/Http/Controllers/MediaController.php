@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Media;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use App\Http\Requests\StoreFile;
+use App\Media;
+
 
 class MediaController extends Controller
 {
@@ -14,7 +17,9 @@ class MediaController extends Controller
      */
     public function index()
     {
-        // TODO
+        $title = 'Media Library';
+        $media = Media::paginate(9);
+        return view('media.index', compact(['media','title']));
     }
 
     /**
@@ -24,7 +29,8 @@ class MediaController extends Controller
      */
     public function create()
     {
-        // TODO
+        $title = 'Upload New Media File';
+        return view('media.create', compact('title'));
     }
 
     /**
@@ -33,9 +39,22 @@ class MediaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreFile $request)
     {
-        // TODO
+        $media = new Media;
+
+        if ($request->hasFile('file')) {
+            $path = $request->file->storeAs("public/media", Str::slug($request->name) . '.' . $request->file->extension());
+            if ($request->file->isValid())
+                $media->path = $path;
+        }
+
+        $media->mime = $request->file->getMimeType();
+        $media->name = $request->name;
+        $media->description = $request->description;
+        $media->save();
+
+        return redirect()->route('media.index')->with('message', 'Successful!');;
     }
 
     /**

@@ -15,7 +15,7 @@ Auth::routes();
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::resource('/dashboard/posts', 'PostController')->middleware('auth');
 Route::resource('/dashboard/categories', 'CategoryController')->middleware('auth');
-
+Route::resource('/dashboard/media', 'MediaController')->middleware('auth');
 
 Route::get('/', function () {
     return view('welcome');

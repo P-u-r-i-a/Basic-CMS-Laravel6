@@ -19,6 +19,12 @@
                     Categories
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{url()->current() == route('media.index')?'active':''}} " href="{{ route('media.index') }}">
+                    <i data-feather="list"></i>
+                    Media
+                </a>
+            </li>
         </ul>
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-success">
             <span>Create</span>
@@ -34,6 +40,12 @@
                 <a class="nav-link {{url()->current() == route('categories.create')?'active':''}}" href="{{ route('categories.create') }}">
                     <i data-feather="plus-circle"></i>
                     New Category
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{url()->current() == route('media.create')?'active':''}}" href="{{ route('media.create') }}">
+                    <i data-feather="plus-circle"></i>
+                    New Media
                 </a>
             </li>
         </ul>
