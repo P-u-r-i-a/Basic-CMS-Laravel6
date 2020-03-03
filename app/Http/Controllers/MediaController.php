@@ -54,7 +54,7 @@ class MediaController extends Controller
         $media->description = $request->description;
         $media->save();
 
-        return redirect()->route('media.index')->with('message', 'Successful!');;
+        return redirect()->route('media.index')->with('message', 'Successful!');
     }
 
     /**
@@ -63,7 +63,7 @@ class MediaController extends Controller
      * @param  \App\Media  $media
      * @return \Illuminate\Http\Response
      */
-    public function show(Media $media)
+    public function show(Media $medium)
     {
         // TODO
     }
@@ -74,7 +74,7 @@ class MediaController extends Controller
      * @param  \App\Media  $media
      * @return \Illuminate\Http\Response
      */
-    public function edit(Media $media)
+    public function edit(Media $medium)
     {
         // TODO
     }
@@ -86,7 +86,7 @@ class MediaController extends Controller
      * @param  \App\Media  $media
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Media $media)
+    public function update(Request $request, Media $medium)
     {
         // TODO
     }
@@ -97,8 +97,9 @@ class MediaController extends Controller
      * @param  \App\Media  $media
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Media $media)
+    public function destroy(Media $medium)
     {
-        // TODO
+        $medium->delete();
+        return view('media.index')->with('message', 'Successful!');
     }
 }

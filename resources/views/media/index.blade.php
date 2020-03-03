@@ -25,6 +25,12 @@
             </div>
             <div class="card-footer d-flex flex-row">
                 <a href="{{ Storage::url($file->path) }}" class="card-link btn btn-outline-success btn-sm" target="_blank">View</a>
+                  <form class="delete-form" action="{{route('media.destroy',['medium' => $file])}}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <input class="card-link btn btn-outline-danger btn-sm ml-3" type="submit" value="Remove" />
+                </form>
+                <a href="{{ Storage::url($file->path) }}" class="card-link btn btn-outline-info btn-sm ml-3" onclick="copyToClipboard(event)">Copy Link</a>
             </div>
         </div>    
     @endforeach
@@ -34,6 +40,17 @@
 </div>
 @endsection
 
+@push('scripts')
+    @include('script.copy-clipboard')
+    <script>
+         $(".delete-form").submit(function(event){
+        event.preventDefault();
+        if(confirm("Are you sure ?"))
+            this.submit();
+        });
+
+    </script>   
+@endpush
 
 
 
