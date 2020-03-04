@@ -12,10 +12,15 @@
 */
 Auth::routes();
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-Route::resource('/dashboard/posts', 'PostController')->middleware('auth');
-Route::resource('/dashboard/categories', 'CategoryController')->middleware('auth');
-Route::resource('/dashboard/media', 'MediaController')->middleware('auth');
+Route::group([
+    'middleware' => 'auth',
+    'prefix' => 'dashboard'
+], function () {
+    Route::get('/', 'DashboardController@index')->name('dashboard');
+    Route::resource('/posts', 'PostController')->except('show');
+    Route::resource('/categories', 'CategoryController')->except('show');
+    Route::resource('/media', 'MediaController')->except(['edit','show','update']);
+});
 
 Route::get('/', function () {
     return view('welcome');
