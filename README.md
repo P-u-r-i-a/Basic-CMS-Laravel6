@@ -13,7 +13,9 @@ Firstly clone this repository and install the dependencies.
 
 After that run the command below. Do not forget to configure your .env file. 
 
+    $ php artisan key:generate
     $ php artisan migrate
+
 
 And then run
 
@@ -30,7 +32,7 @@ Finally, serve the application.
  - [x] Authentication
  - [x] Create,Update and Delete Posts
  - [x] Categories
- - [ ] Media Library
+ - [x] Media Library
  - [ ] Settings
  - [ ] Sitemap
  - [ ] Improve UI/UX
