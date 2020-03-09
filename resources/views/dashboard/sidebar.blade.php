@@ -27,6 +27,17 @@
             </li>
         </ul>
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-success">
+            <span>Settings</span>
+        </h6>
+        <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+                <a class="nav-link {{url()->current() == route('settings.index')?'active':''}}" href="{{ route('settings.index') }}">
+                    <i data-feather="list"></i>
+                   Settings
+                </a>
+            </li>
+        </ul>
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-success">
             <span>Create</span>
         </h6>
         <ul class="nav flex-column mb-2">

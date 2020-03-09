@@ -20,6 +20,8 @@ Route::group([
     Route::resource('/posts', 'PostController')->except('show');
     Route::resource('/categories', 'CategoryController')->except('show');
     Route::resource('/media', 'MediaController')->except(['edit','show','update']);
+    Route::get('/settings','SettingController@index')->name('settings.index');
+    Route::put('/settings', 'SettingController@update')->name('settings.update');
 });
 
 Route::get('/', function () {
