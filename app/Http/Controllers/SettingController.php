@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Setting;
 
 class SettingController extends Controller
@@ -26,8 +27,22 @@ class SettingController extends Controller
      */
     public function update(Request $request)
     {
-        // TODO Validae $request
-        // TODO Update Settings
-        return $request;
+
+        foreach ($request->except(['_token', '_method']) as $name => $value) {
+            $rules[$name] = "required";
+        }
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails())
+            return back()->withInput()->with('error', 'All fields are required!');
+
+        foreach ($request->except(['_token', '_method']) as $name => $value) {
+            $settings = Setting::where('name', $name)->firstOrfail();
+            $settings->value = $value;
+            $settings->save();
+        }
+
+        return back()->with('message', 'Successful!');
     }
 }
