@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         $title = 'Categories';
-        $categories = Category::paginate(9);
+        $categories = Category::orderBy('created_at', 'desc')->paginate(9);
         return view('category.index', compact(['categories', 'title']));
     }
 

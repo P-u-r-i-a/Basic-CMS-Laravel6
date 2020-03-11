@@ -18,7 +18,7 @@ class MediaController extends Controller
     public function index()
     {
         $title = 'Media Library';
-        $media = Media::paginate(9);
+        $media = Media::orderBy('created_at', 'desc')->paginate(9);
         return view('media.index', compact(['media','title']));
     }
 
