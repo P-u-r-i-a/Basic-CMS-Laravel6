@@ -24,6 +24,4 @@ Route::group([
     Route::put('/settings', 'SettingController@update')->name('settings.update');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','PageController@home')->name('pages.home');
