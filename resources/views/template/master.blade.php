@@ -6,7 +6,9 @@
       @include('template.layouts.topbar')
       @include('template.layouts.modals')
       @include('template.layouts.navbar')
-      @include('template.layouts.carousel')
+      @if(url()->current() == route('pages.home'))
+        @include('template.layouts.carousel')
+      @endif
       @yield('content')
       @include('template.layouts.footer')
     </div>

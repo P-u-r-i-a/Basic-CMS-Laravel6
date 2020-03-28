@@ -25,3 +25,5 @@ Route::group([
 });
 
 Route::get('/','PageController@home')->name('pages.home');
+Route::get('/blog','PageController@blog')->name('pages.blog');
+Route::get('/blog/{post}','PageController@post')->name('pages.post');

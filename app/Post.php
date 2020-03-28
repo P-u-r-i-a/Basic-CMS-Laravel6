@@ -23,6 +23,14 @@ class Post extends Model
     }
 
     /**
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return'slug';
+    }
+
+    /**
      * Many to many relationship between posts and categories
      *
      * @return  \Illuminate\Database\Eloquent\Relations\BelongsToMany
