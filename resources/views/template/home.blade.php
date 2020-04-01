@@ -242,3 +242,7 @@
   </div>
 </div>  
 @endsection
+
+@push('tags')
+    <title>Basic CMS</title>
+@endpush

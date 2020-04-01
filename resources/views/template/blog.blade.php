@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div class="image"><a href="{{ route('pages.post', compact('post')) }}"><img src="{{ Storage::url($post->cover_image) }}" alt="Example blog post alt" class="img-fluid"></a></div>
-                    <p class="intro">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                    <p class="intro">{{ $post->meta_description }}</p>
                     <p class="read-more text-right"><a href="{{ route('pages.post', compact('post')) }}" class="btn btn-template-outlined">Continue reading</a></p>
                 </section>
                 <hr>
@@ -43,3 +43,7 @@
         </div>
       </div>
 @endsection
+
+@push('tags')
+    <title>Blog | Basic CMS</title>
+@endpush

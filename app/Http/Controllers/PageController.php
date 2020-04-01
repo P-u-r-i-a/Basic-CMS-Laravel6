@@ -35,6 +35,6 @@ class PageController extends Controller
      */
     public function post(Post $post)
     {
-        return $post;
+        return view('template.post', compact('post'));
     }
 }
